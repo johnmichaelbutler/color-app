@@ -5,18 +5,20 @@ import './ColorBox.css';
 function ColorBox(props) {
   const { name, backgroundColor } = props;
   return (
-    <div style={{background: backgroundColor}} className="ColorBox">
-      <div className="copy-container">
-        <div className="box-content">
-          <span>{name}</span>
+    <CopyToClipboard text={backgroundColor}>
+      <div style={{background: backgroundColor}} className="ColorBox">
+        <div className="copy-container">
+          <div className="box-content">
+            <span>{name}</span>
+          </div>
+          <button className="copy-button">
+            Copy
+          </button>
         </div>
-        <button className="copy-button">
-          Copy
-        </button>
+        <span className="see-more">More</span>
       </div>
-      <span className="see-more">More</span>
-    </div>
+    </CopyToClipboard>
   )
 };
 
-export default ColorBox
+export default ColorBox;
