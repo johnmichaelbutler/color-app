@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { FormatContext } from './contexts/FormatContext';
 import { LevelContext } from './contexts/LevelContext';
 import { SnackbarOpenContext } from './contexts/SnackbarOpenContext';
@@ -26,7 +27,7 @@ function Navbar(props) {
   return (
       <header className="Navbar">
         <div className="logo">
-          <a href="#">reactcolorpicker</a>
+          <Link to="/">reactcolorpicker</Link>
         </div>
         <div className="slider-container">
           <span>Level: {level}</span>
