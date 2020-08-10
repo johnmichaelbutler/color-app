@@ -4,14 +4,17 @@ import seedColors from '../seedColors';
 
 export const PaletteContext = createContext();
 
-const makePalette = num => {
-  return generatePalette(seedColors[num]);
-}
+const makePalette = id => {
+  const seedPalette = seedColors.find((palette) => palette.id === id);
+  console.log("seed palette",seedPalette);
+  return generatePalette(seedPalette);
+};
+
 
 export function PaletteProvider(props) {
-  const [palette, setPalette] = useState(makePalette(4));
+  const [palette, setPalette] = useState(makePalette("material-ui-colors"));
 
-  const changePalette = num => setPalette(makePalette(num));
+  const changePalette = id => setPalette(makePalette(id));
 
   return (
     <PaletteContext.Provider value={{ palette, changePalette }}>

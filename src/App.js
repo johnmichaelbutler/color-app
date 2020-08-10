@@ -8,7 +8,10 @@ import Palette from './Palette';
 
 import './App.css';
 
+
 function App() {
+
+
 
   return (
     <div className="App">
@@ -19,7 +22,7 @@ function App() {
 
               <Switch>
                 <Route exact path='/' render={() => <h1>Palette List</h1>} />
-                <Route exact path='/palette/:id' render={() => <h1>Individual Palette</h1>} />
+                <Route exact path='/palette/:id' render={(props) => <Palette {...props} />} />
               </Switch>
               {/* <Palette /> */}
             </PaletteProvider>
@@ -31,3 +34,5 @@ function App() {
 }
 
 export default App;
+
+// palette={generatePalette(findPalette(routeProps.match.params.id))}
