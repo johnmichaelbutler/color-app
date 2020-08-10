@@ -51,7 +51,7 @@ function MiniPalette(props) {
 
 
   const goToPalette = id => {
-    props.history.push(`/palette/${id}`)
+    history.push(`/palette/${id}`)
   }
 
   const miniColorBoxes = colors.map(color => (
