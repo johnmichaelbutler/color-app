@@ -21,7 +21,7 @@ function App() {
               <Switch>
                 <Route exact path='/' render={() => <PaletteList />} />
                 <Route exact path='/palette/:id' render={(props) => <Palette {...props} />} />
-                <Route exact path='/palette/:paletteId/:colorId' render={() => <SingleColorPalette />} />
+                <Route exact path='/palette/:paletteId/:colorId' render={(props) => <SingleColorPalette {...props} />} />
               </Switch>
             </PaletteProvider>
           </LevelProvider>

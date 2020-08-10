@@ -9,6 +9,17 @@ const makePalette = id => {
   return generatePalette(seedPalette);
 };
 
+export const gatherShades = (palette, colorToFilterBy) => {
+  let shades = [];
+  let allColors = palette.colors;
+  for(let key in allColors) {
+    shades = shades.concat(
+      allColors[key].filter(color => color.id === colorToFilterBy)
+    )
+  }
+  return shades.slice(1);
+}
+
 
 export function PaletteProvider(props) {
   const [palette, setPalette] = useState(makePalette("material-ui-colors"));
@@ -16,7 +27,7 @@ export function PaletteProvider(props) {
   const changePalette = id => setPalette(makePalette(id));
 
   return (
-    <PaletteContext.Provider value={{ palette, changePalette }}>
+    <PaletteContext.Provider value={{ palette, changePalette, gatherShades }}>
       {props.children}
     </PaletteContext.Provider>
   )

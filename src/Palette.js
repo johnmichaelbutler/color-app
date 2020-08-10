@@ -25,6 +25,7 @@ function Palette(props) {
       id={color.id}
       backgroundColor={color[format]}
       name={color.name}
+      showLink
     />
   ));
 
