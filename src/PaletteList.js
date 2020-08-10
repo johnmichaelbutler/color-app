@@ -2,7 +2,6 @@ import React from 'react';
 import seedColors from './seedColors';
 import MiniPalette from './MiniPalette';
 import { withStyles } from '@material-ui/styles';
-import { Link } from 'react-router-dom';
 
 const styles = {
   root: {
@@ -43,7 +42,7 @@ function PaletteList(props) {
           <h1>React Colors</h1>
         </nav>
         <div className={classes.palettes}>
-          {seedColors.map(palette => (
+          {seedColors.map(palette=> (
             <MiniPalette {...palette} />
           ))}
         </div>

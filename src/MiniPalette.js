@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 
 const styles = {
@@ -46,7 +47,13 @@ const styles = {
 }
 
 function MiniPalette(props) {
-  const{ classes, paletteName, emoji, colors } = props;
+  const{ paletteName, emoji, colors, classes, id, history } = props;
+
+
+  const goToPalette = id => {
+    props.history.push(`/palette/${id}`)
+  }
+
   const miniColorBoxes = colors.map(color => (
     <div
       className={classes.miniColor}
@@ -55,7 +62,7 @@ function MiniPalette(props) {
     />
   ))
   return (
-    <div className={classes.root}>
+    <div className={classes.root} onClick={() => goToPalette(id)}>
       <div className={classes.colors}>
         {miniColorBoxes}
       </div>
@@ -66,4 +73,4 @@ function MiniPalette(props) {
   )
 }
 
-export default withStyles(styles)(MiniPalette);
+export default withRouter(withStyles(styles)(MiniPalette));
