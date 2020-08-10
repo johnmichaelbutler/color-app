@@ -14,7 +14,7 @@ import IconButton from '@material-ui/core/IconButton';
 import './Navbar.css';
 
 function Navbar(props) {
-
+  const { isShowingOneColor } = props;
   const { format, changeFormat } = useContext(FormatContext);
   const { level, changeLevel } = useContext(LevelContext);
   const { snackbarOpen, changeSnackbarOpen } = useContext(SnackbarOpenContext);
@@ -29,17 +29,20 @@ function Navbar(props) {
         <div className="logo">
           <Link to="/">reactcolorpicker</Link>
         </div>
-        <div className="slider-container">
-          <span>Level: {level}</span>
-          <div className="Slider">
-            <Slider
-              defaultValue={level}
-              min={100} max={900}
-              step={100}
-              onAfterChange={(newLevel) => changeLevel(newLevel)}
-            />
+        { !isShowingOneColor && (
+          <div className="slider-container">
+            <span>Level: {level}</span>
+            <div className="Slider">
+              <Slider
+                defaultValue={level}
+                min={100} max={900}
+                step={100}
+                onAfterChange={(newLevel) => changeLevel(newLevel)}
+              />
+            </div>
           </div>
-        </div>
+        )}
+
         <div className="select-container">
           <Select value={format} onChange={changeFormatAndRespond}>
             <MenuItem value="hex">HEX - #ffffff</MenuItem>

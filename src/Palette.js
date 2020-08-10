@@ -3,6 +3,7 @@ import { FormatContext } from './contexts/FormatContext';
 import { LevelContext } from './contexts/LevelContext';
 import { PaletteContext } from './contexts/PaletteContext';
 import ColorBox from './ColorBox';
+import PaletteFooter from './PaletteFooter';
 import Navbar from './Navbar';
 
 import './Palette.css';
@@ -35,10 +36,7 @@ function Palette(props) {
       <div className="Palette-colors">
         {colorBoxes}
       </div>
-      <footer className="Palette-footer">
-        {palette.paletteName}
-        <span className='emoji'>{palette.emoji}</span>
-      </footer>
+      <PaletteFooter palette={palette} />
     </div>
   )
 };
