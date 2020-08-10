@@ -77,6 +77,11 @@ function NewPaletteForm() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(true);
+  const [currentColor, setCurrentColor] = useState('teal');
+  const [colors, setColors] = useState(['purple', '#e15764']);
+
+
+  const addNewColor = () => setColors([...colors, currentColor]);
 
   return (
     <div className={classes.root}>
@@ -125,10 +130,15 @@ function NewPaletteForm() {
           Random Color
         </Button>
         <ChromePicker
-          color="purple"
-          onChangeComplete={(newColor) => console.log(newColor)}
+          color={currentColor}
+          onChangeComplete={(newColor) => setCurrentColor(newColor.hex)}
         />
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          color="primary"
+          style={{backgroundColor: currentColor}}
+          onClick={() => addNewColor()}
+        >
           Add Color
         </Button>
       </Drawer>
@@ -138,7 +148,11 @@ function NewPaletteForm() {
         })}
       >
         <div className={classes.drawerHeader} />
-
+        <ul>
+          {colors.map(color => (
+            <li style={{backgroundColor: color}}>{color}</li>
+          ))}
+        </ul>
       </main>
     </div>
   );
