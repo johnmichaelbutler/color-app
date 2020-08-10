@@ -9,9 +9,7 @@ export default function PaletteList() {
       <h1>React Colors</h1>
       <MiniPalette />
       {seedColors.map(palette => (
-        <p>
-          <Link to={`/palette/${palette.id}`}>{palette.paletteName}</Link>
-        </p>
+        <MiniPalette {...palette} />
       ))}
     </div>
   )
