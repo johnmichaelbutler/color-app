@@ -15,12 +15,17 @@ function Palette(props) {
   const { palette, changePalette } = useContext(PaletteContext);
 
   useEffect(() => {
-    console.log(id)
     changePalette(id);
-  }, [id, changePalette]);
+  }, [id]);
 
   const colorBoxes = palette.colors[level].map(color => (
-    <ColorBox key={color.id} backgroundColor={color[format]} name={color.name} />
+    <ColorBox
+      key={color.id}
+      paletteId={id}
+      id={color.id}
+      backgroundColor={color[format]}
+      name={color.name}
+    />
   ));
 
   return (

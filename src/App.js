@@ -8,6 +8,7 @@ import Palette from './Palette';
 import PaletteList from './PaletteList';
 
 import './App.css';
+import SingleColorPalette from './SingleColorPalette';
 
 function App() {
 
@@ -20,7 +21,7 @@ function App() {
               <Switch>
                 <Route exact path='/' render={() => <PaletteList />} />
                 <Route exact path='/palette/:id' render={(props) => <Palette {...props} />} />
-                <Route exact path='/palette/:paletteId/:colorId' render={() => <h1>Single Color Page</h1>} />
+                <Route exact path='/palette/:paletteId/:colorId' render={() => <SingleColorPalette />} />
               </Switch>
             </PaletteProvider>
           </LevelProvider>
