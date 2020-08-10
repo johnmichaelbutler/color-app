@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { FormatContext } from './contexts/FormatContext';
 import { LevelContext } from './contexts/LevelContext';
+import { PaletteContext } from './contexts/PaletteContext';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 
@@ -9,9 +10,10 @@ import './Palette.css';
 function Palette(props) {
   const { format } = useContext(FormatContext);
   const { level } = useContext(LevelContext);
+  const { palette } = useContext(PaletteContext);
 
-  const colorBoxes = props.palette.colors[level].map(color => (
-    <ColorBox backgroundColor={color[format]} name={color.name} />
+  const colorBoxes = palette.colors[level].map(color => (
+    <ColorBox key={color.id} backgroundColor={color[format]} name={color.name} />
   ));
 
   return (
@@ -20,8 +22,12 @@ function Palette(props) {
       <div className="Palette-colors">
         {colorBoxes}
       </div>
+      <footer className="Palette-footer">
+        {palette.paletteName}
+        <span className='emoji'>{palette.emoji}</span>
+      </footer>
     </div>
   )
-}
+};
 
 export default Palette;
