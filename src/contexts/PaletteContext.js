@@ -6,7 +6,6 @@ export const PaletteContext = createContext();
 
 const makePalette = id => {
   const seedPalette = seedColors.find((palette) => palette.id === id);
-  console.log("seed palette",seedPalette);
   return generatePalette(seedPalette);
 };
 
