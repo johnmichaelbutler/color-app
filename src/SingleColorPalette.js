@@ -1,8 +1,10 @@
 import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
 import { PaletteContext } from './contexts/PaletteContext';
 import { FormatContext } from './contexts/FormatContext';
+
 
 import ColorBox from './ColorBox';
 
@@ -20,7 +22,7 @@ function SingleColorPalette(props) {
 
   const colorBoxes = shades.map(color => (
     <ColorBox
-      key={color.id}
+      key={color.name}
       name={color.name}
       backgroundColor={color[format]}
       showLink={false}
@@ -28,9 +30,14 @@ function SingleColorPalette(props) {
   ));
 
   return (
-    <div className='Palette'>
+    <div className='Palette SingleColorPalette'>
       <Navbar isShowingOneColor />
-      <div className="Palette-colors">{colorBoxes}</div>
+      <div className="Palette-colors">
+        {colorBoxes}
+        <div className="go-back ColorBox">
+          <Link to= {`/palette/${paletteId}`} className="back-button">Go Back</Link>
+        </div>
+        </div>
       <PaletteFooter palette={palette} />
     </div>
   )
