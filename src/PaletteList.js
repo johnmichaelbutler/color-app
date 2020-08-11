@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import seedColors from './seedColors';
 import MiniPalette from './MiniPalette';
 import { withStyles } from '@material-ui/styles';
 
 import './PaletteList.css';
+import { useContext } from 'react';
+import { AllPalettesContext } from './contexts/AllPalettesContext';
 
 const styles = {
   root: {
@@ -41,7 +42,9 @@ const styles = {
   }
 }
 
+
 function PaletteList(props) {
+  const { allPalettes } = useContext(AllPalettesContext);
   const { classes } = props;
   return (
     <div className={classes.root}>
@@ -51,8 +54,8 @@ function PaletteList(props) {
           <Link to="/palette/new">Create Palette</Link>
         </nav>
         <div className={classes.palettes}>
-          {seedColors.map(palette=> (
-            <MiniPalette {...palette} />
+          {allPalettes.map(palette=> (
+            <MiniPalette key={palette.paletteName} {...palette} />
           ))}
         </div>
       </div>

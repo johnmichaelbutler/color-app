@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { FormatContext } from './contexts/FormatContext';
 import { LevelContext } from './contexts/LevelContext';
-import { PaletteContext } from './contexts/PaletteContext';
+import { SinglePaletteContext } from './contexts/SinglePaletteContext';
 import ColorBox from './ColorBox';
 import PaletteFooter from './PaletteFooter';
 import Navbar from './Navbar';
@@ -13,7 +13,7 @@ function Palette(props) {
   const id = props.match.params.id;
   const { format } = useContext(FormatContext);
   const { level } = useContext(LevelContext);
-  const { palette, changePalette } = useContext(PaletteContext);
+  const { palette, changePalette } = useContext(SinglePaletteContext);
 
   useEffect(() => {
     changePalette(id);

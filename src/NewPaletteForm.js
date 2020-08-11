@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { withRouter } from 'react-router-dom';
 import clsx from 'clsx';
 import DraggableColorBox from './DraggableColorBox';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -14,6 +15,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
 import {ChromePicker} from 'react-color';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { AllPalettesContext } from './contexts/AllPalettesContext';
 
 
 const drawerWidth = 400;
@@ -76,13 +78,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function NewPaletteForm() {
+function NewPaletteForm(props) {
   const classes = useStyles();
-  const theme = useTheme();
+  const {allPalettes, addToAllPalettes} = useContext(AllPalettesContext);
   const [newName, setNewName] = useState("");
   const [open, setOpen] = useState(true);
   const [currentColor, setCurrentColor] = useState('teal');
   const [colors, setColors] = useState([]);
+  const { history } = props;
 
   useEffect(() => {
     ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
@@ -93,6 +96,16 @@ function NewPaletteForm() {
     });
   }, [colors, currentColor]);
 
+  const savePalette = () => {
+    let newName="New Test Palette";
+    const newPalette = {
+      paletteName: newName,
+      id: newName.toLowerCase().replace(/ /g, "-"),
+      colors: colors
+    };
+    addToAllPalettes(allPalettes, newPalette);
+    history.push("/");
+  }
 
   const addNewColor = () => {
     const newColor = {
@@ -108,6 +121,7 @@ function NewPaletteForm() {
       <CssBaseline />
       <AppBar
         position="fixed"
+        color='default'
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
@@ -125,6 +139,13 @@ function NewPaletteForm() {
           <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={savePalette}
+          >
+            Save Palette
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -185,4 +206,4 @@ function NewPaletteForm() {
   );
 }
 
-export default NewPaletteForm;
+export default withRouter(NewPaletteForm);

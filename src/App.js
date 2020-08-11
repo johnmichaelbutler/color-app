@@ -2,7 +2,8 @@ import React from 'react';
 import {FormatProvider} from './contexts/FormatContext';
 import { LevelProvider } from './contexts/LevelContext';
 import { SnackbarOpenProvider } from './contexts/SnackbarOpenContext';
-import { PaletteProvider } from './contexts/PaletteContext';
+import { SinglePaletteProvider } from './contexts/SinglePaletteContext';
+import { AllPalettesProvider } from './contexts/AllPalettesContext';
 import { Route, Switch } from 'react-router-dom';
 import Palette from './Palette';
 import PaletteList from './PaletteList';
@@ -18,14 +19,16 @@ function App() {
       <FormatProvider>
         <SnackbarOpenProvider>
           <LevelProvider>
-            <PaletteProvider>
-              <Switch>
-                <Route exact path="/palette/new" render={() => <NewPaletteForm/>} />
-                <Route exact path='/' render={() => <PaletteList />} />
-                <Route exact path='/palette/:id' render={(props) => <Palette {...props} />} />
-                <Route exact path='/palette/:paletteId/:colorId' render={(props) => <SingleColorPalette {...props} />} />
-              </Switch>
-            </PaletteProvider>
+            <AllPalettesProvider>
+              <SinglePaletteProvider>
+                <Switch>
+                  <Route exact path="/palette/new" render={() => <NewPaletteForm/>} />
+                  <Route exact path='/' render={() => <PaletteList />} />
+                  <Route exact path='/palette/:id' render={(props) => <Palette {...props} />} />
+                  <Route exact path='/palette/:paletteId/:colorId' render={(props) => <SingleColorPalette {...props} />} />
+                </Switch>
+              </SinglePaletteProvider>
+            </AllPalettesProvider>
           </LevelProvider>
         </SnackbarOpenProvider>
       </FormatProvider>
@@ -34,5 +37,3 @@ function App() {
 }
 
 export default App;
-
-// palette={generatePalette(findPalette(routeProps.match.params.id))}

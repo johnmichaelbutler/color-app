@@ -21,11 +21,11 @@ function ColorBox(props) {
         <div style={{background: backgroundColor}} className={`copy-overlay ${copied && "show"}`} />
         <div className={`copy-message ${copied && "show"}`}>
           <h1>Copied!</h1>
-          <p className={isLightColor && "dark-text"}>{backgroundColor}</p>
+          <p className={isLightColor ? "dark-text" : undefined}>{backgroundColor}</p>
         </div>
         <div className="copy-container">
           <div className="box-content">
-            <span className={ isDarkColor && "light-text"}>
+            <span className={ isDarkColor ? "light-text" : undefined}>
               {name}
             </span>
           </div>

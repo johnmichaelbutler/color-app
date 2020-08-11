@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
-import { PaletteContext } from './contexts/PaletteContext';
+import { SinglePaletteContext } from './contexts/SinglePaletteContext';
 import { FormatContext } from './contexts/FormatContext';
 
 
@@ -11,7 +11,7 @@ import ColorBox from './ColorBox';
 function SingleColorPalette(props) {
   const { paletteId, colorId } = props.match.params;
 
-  const { palette, changePalette, gatherShades } = useContext(PaletteContext);
+  const { palette, changePalette, gatherShades } = useContext(SinglePaletteContext);
   const { format } = useContext(FormatContext);
 
   const shades = gatherShades(palette, colorId);
