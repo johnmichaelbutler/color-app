@@ -12,7 +12,7 @@ import { NewPaletteNameContext } from './contexts/NewPaletteNameContext';
 import { CustomColorsContext } from './contexts/CustomColorsContext';
 
 function PaletteMetaForm(props) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const { history } = props;
 
   const {allPalettes, addToAllPalettes } = useContext(AllPalettesContext);
@@ -37,25 +37,27 @@ function PaletteMetaForm(props) {
   }
 
   return (
-    <div>
-      <Button variant="outlined" color="primary" onClick={() => setOpen(true)}>
-        Open form dialog
-      </Button>
-      <Dialog open={open} onClose={() => setOpen(false)} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+    <Dialog open={open} onClose={() => setOpen(false)} aria-labelledby="form-dialog-title">
+      <DialogTitle id="form-dialog-title">Choose a Palette Name</DialogTitle>
+      <ValidatorForm onSubmit={savePalette}>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here. We will send updates
-            occasionally.
+            Please enter a name for your new beautiful palette. Make sure it's unique.
           </DialogContentText>
-          <ValidatorForm onSubmit={savePalette}>
-              <TextValidator
-                label='Palette Name'
-                value={newPaletteName}
-                onChange={(e) => setNewPaletteName(e.target.value)}
-                validators={["required", "isPaletteNameUnique"]}
-                errorMessages={["Enter A Name", "Name already taken"]}
-              />
+          <TextValidator
+            label='Palette Name'
+            value={newPaletteName}
+            onChange={(e) => setNewPaletteName(e.target.value)}
+            fullWidth
+            margin="normal"
+            validators={["required", "isPaletteNameUnique"]}
+            errorMessages={["Enter A Name", "Name already taken"]}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpen(false)} color="primary">
+            Cancel
+          </Button>
               <Button
                 variant="contained"
                 color="primary"
@@ -63,15 +65,9 @@ function PaletteMetaForm(props) {
               >
                 Save Palette
               </Button>
-            </ValidatorForm>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpen(false)} color="primary">
-            Cancel
-          </Button>
         </DialogActions>
-      </Dialog>
-    </div>
+      </ValidatorForm>
+    </Dialog>
   );
 }
 

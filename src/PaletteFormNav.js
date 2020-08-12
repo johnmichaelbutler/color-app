@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import PaletteMetaForm from './PaletteMetaForm';
@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     }),
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
     height: "64px"
   },
   appBarShift: {
@@ -45,15 +46,26 @@ const useStyles = makeStyles((theme) => ({
     flexShrink: 0,
   },
   navBtns: {
-
+    marginRight: "1rem"
+  },
+  button: {
+    margin: "0 0.5rem",
+  },
+  link: {
+    textDecoration: "none"
   }
-
 }));
 
 function PaletteFormNav(props) {
   const classes = useStyles();
 
+  const [formShowing, setFormShowing] = useState(false);
+
   const {drawerOpen, setDrawerOpen} = useContext(DrawerOpenContext);
+
+  const showForm = () => {
+    setFormShowing(true);
+  }
 
   return (
     <div className={classes.root}>
@@ -80,15 +92,24 @@ function PaletteFormNav(props) {
           </Typography>
         </Toolbar>
         <div className={classes.navBtns}>
-            <PaletteMetaForm />
-            <Link to="/">
-                <Button
-                  variant='contained'
-                  color='secondary'
-                >
-                  Go Back
-                </Button>
-              </Link>
+          <Link to="/" className={classes.link}>
+              <Button
+                className={classes.button}
+                variant='contained'
+                color='secondary'
+              >
+                Go Back
+              </Button>
+            </Link>
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="primary"
+              onClick={showForm}
+            >
+              Open form dialog
+            </Button>
+            {formShowing && <PaletteMetaForm />}
           </div>
       </AppBar>
     </div>
