@@ -112,7 +112,7 @@ function PaletteFormNav(props) {
             >
               Open form dialog
             </Button>
-            {formShowing && <PaletteMetaForm hideForm={hideForm} open={formShowing} />}
+            {formShowing && <PaletteMetaForm hideForm={hideForm} openForm={formShowing} />}
           </div>
       </AppBar>
     </div>
