@@ -13,6 +13,7 @@ import Button from '@material-ui/core/Button';
 import {ChromePicker} from 'react-color';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { AllPalettesContext } from './contexts/AllPalettesContext';
+import { NewPaletteNameContext } from './contexts/NewPaletteNameContext'
 import { DrawerOpenContext } from './contexts/DrawerOpenContext';
 import arrayMove from 'array-move';
 
@@ -78,45 +79,29 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function NewPaletteForm(props) {
-  
+  const {allPalettes } = useContext(AllPalettesContext);
+  const {drawerOpen, setDrawerOpen} = useContext(DrawerOpenContext);
+
   const [newColorName, setNewColorName] = useState("");
   const [currentColor, setCurrentColor] = useState("teal");
-  
-  const {allPalettes, addToAllPalettes} = useContext(AllPalettesContext);
-  const {drawerOpen, setDrawerOpen} = useContext(DrawerOpenContext);
   const [colors, setColors] = useState(allPalettes[0].colors);
-  const [newPaletteName, setNewPaletteName] = useState("");
-  
+  const { newPaletteName } = useContext(NewPaletteNameContext);
+
+
   const maxColors = 20;
   const paletteIsFull = colors.length >= maxColors;
-  const { history } = props;
+
 
   const classes = useStyles();
 
   useEffect(() => {
-    console.log("allPalettes", allPalettes);
-    console.log("initial colors", colors);
-    ValidatorForm.addValidationRule("isPaletteNameUnique", value =>
-      allPalettes.every(
-        ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
-      ));
     ValidatorForm.addValidationRule('isColorNameUnique', value => {
       return colors.every(({name}) => name.toLowerCase() !== value.toLowerCase());
     });
     ValidatorForm.addValidationRule("isColorUnique", value => {
       return colors.every((color) => color.color !== currentColor);
     });
-  }, [colors, currentColor, allPalettes]);
-
-  const savePalette = () => {
-    const newPalette = {
-      paletteName: newPaletteName,
-      id: newPaletteName.toLowerCase().replace(/ /g, "-"),
-      colors: colors
-    };
-    addToAllPalettes(allPalettes, newPalette);
-    history.push("/");
-  }
+  }, [colors, currentColor]);
 
   const addNewColor = () => {
     const newColor = {
@@ -153,8 +138,7 @@ function NewPaletteForm(props) {
     <div className={classes.root}>
       <PaletteFormNav
         classes={classes}
-        newPaletteName={newPaletteName}
-        setNewPaleteName={setNewPaletteName}
+        colors={colors}
       />
       <Drawer
         className={classes.drawer}
