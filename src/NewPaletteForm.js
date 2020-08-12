@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import clsx from 'clsx';
 import DraggableColorList from './DraggableColorList';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -80,19 +80,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function NewPaletteForm(props) {
+  const {allPalettes, addToAllPalettes} = useContext(AllPalettesContext);
   const [newColorName, setNewColorName] = useState("");
   const [open, setOpen] = useState(true);
-  const [currentColor, setCurrentColor] = useState('teal');
-  const [colors, setColors] = useState([]);
+  const [currentColor, setCurrentColor] = useState("teal");
+  const [colors, setColors] = useState(allPalettes[0].colors);
   const [newPaletteName, setNewPaletteName] = useState("");
 
-  const {allPalettes, addToAllPalettes} = useContext(AllPalettesContext);
+  const maxColors = 20;
+  const paletteIsFull = colors.length >= maxColors;
   const { history } = props;
 
   const classes = useStyles();
 
   useEffect(() => {
     console.log("allPalettes", allPalettes);
+    console.log("initial colors", colors);
     ValidatorForm.addValidationRule("isPaletteNameUnique", value =>
       allPalettes.every(
         ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
@@ -122,6 +125,19 @@ function NewPaletteForm(props) {
     }
     setColors([...colors, newColor]);
     setNewColorName("");
+  }
+
+  const makeRandomColor = () => {
+    const allColors = allPalettes.map(p => p.colors).flat();
+    let rand = Math.floor(Math.random() * allColors.length);
+    return allColors[rand];
+  }
+
+  const addRandomColor = () => {
+    const {color, name} = makeRandomColor();
+    const newColor = {color: color, name: name};
+    setColors([...colors, newColor]);
+    console.log("colors after random", colors);
   }
 
   const removeColor = (colorName) => {
@@ -190,10 +206,10 @@ function NewPaletteForm(props) {
         </div>
         <Divider />
         <Typography variant="h4">Design Your Palette</Typography>
-        <Button variant='contained' color="secondary">
+        <Button variant='contained' color="secondary" onClick={() => setColors([])}>
           Clear Palette
         </Button>
-        <Button variant='contained' color="primary">
+        <Button disabled={paletteIsFull} variant='contained' color="primary" onClick={() => addRandomColor()}>
           Random Color
         </Button>
         <ChromePicker
@@ -210,10 +226,11 @@ function NewPaletteForm(props) {
           <Button
             variant="contained"
             color="primary"
-            style={{backgroundColor: currentColor}}
+            style={{backgroundColor: paletteIsFull ? "grey" : currentColor}}
             type="submit"
+            disabled={paletteIsFull}
           >
-            Add Color
+            {paletteIsFull ? "Palette Full" : "Add Color" }
           </Button>
         </ValidatorForm>
       </Drawer>
