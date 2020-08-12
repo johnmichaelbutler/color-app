@@ -20,7 +20,6 @@ export const gatherShades = (palette, colorToFilterBy) => {
   return shades.slice(1);
 }
 
-
 export function SinglePaletteProvider(props) {
   const { allPalettes } = useContext(AllPalettesContext);
 

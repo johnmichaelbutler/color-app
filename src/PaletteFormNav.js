@@ -12,10 +12,11 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { DrawerOpenContext } from './contexts/DrawerOpenContext';
 import { AllPalettesContext } from './contexts/AllPalettesContext';
 import { NewPaletteNameContext } from './contexts/NewPaletteNameContext';
-
+import { CustomColorsContext } from './contexts/CustomColorsContext';
 
 function PaletteFormNav(props) {
-  const {classes, colors } = props;
+  const {classes } = props;
+  const {customColors, setCustomColors} = useContext(CustomColorsContext);
   const { newPaletteName, setNewPaletteName } = useContext(NewPaletteNameContext);
   const {drawerOpen, setDrawerOpen} = useContext(DrawerOpenContext);
   const {allPalettes, addToAllPalettes } = useContext(AllPalettesContext);
@@ -32,7 +33,7 @@ function PaletteFormNav(props) {
     const newPalette = {
       paletteName: newPaletteName,
       id: newPaletteName.toLowerCase().replace(/ /g, "-"),
-      colors: colors
+      colors: customColors
     };
     addToAllPalettes(allPalettes, newPalette);
     history.push("/");

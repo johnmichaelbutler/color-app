@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
+import { CustomColorsContext } from './contexts/CustomColorsContext';
 
 const styles = {
   root: {
@@ -48,13 +49,13 @@ const styles = {
 
 function MiniPalette(props) {
   const{ paletteName, emoji, colors, classes, id, history } = props;
-
+  const { customColors } = useContext(CustomColorsContext);
 
   const goToPalette = id => {
     history.push(`/palette/${id}`)
   }
 
-  const miniColorBoxes = colors.map(color => (
+  const miniColorBoxes = customColors.map(color => (
     <div
       className={classes.miniColor}
       style={{backgroundColor: color.color}}
