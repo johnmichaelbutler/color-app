@@ -13,7 +13,6 @@ function ColorPickerForm() {
   const paletteIsFull = customColors.length >= maxColors;
 
   useEffect(() => {
-    console.log("customColors", customColors);
     ValidatorForm.addValidationRule('isColorNameUnique', value => {
       return customColors.every(({name}) => name.toLowerCase() !== value.toLowerCase());
     });
