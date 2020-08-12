@@ -11,3 +11,4 @@ allPalettes - The entire collection of palettes that will be displayed on the ho
 
 SinglePalette - A single palette chocie that will be shown when you go to the route for that palette
 
+colors - Custom colors that a user can pick for a custom palette
