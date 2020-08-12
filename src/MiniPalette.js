@@ -3,11 +3,18 @@ import { withRouter } from 'react-router-dom';
 import { CustomColorsContext } from './contexts/CustomColorsContext';
 import useStyles from './styles/MiniPaletteStyles';
 import DeleteIcon from '@material-ui/icons/Delete'
+import { AllPalettesContext } from './contexts/AllPalettesContext';
 
 function MiniPalette(props) {
   const classes = useStyles();
   const{ paletteName, emoji, id, history } = props;
   const { customColors } = useContext(CustomColorsContext);
+  const { deletePalette } = useContext(AllPalettesContext);
+
+  const deleteAPalette = (e) => {
+    e.stopPropagation();
+    deletePalette(id);
+  }
 
   const goToPalette = id => {
     history.push(`/palette/${id}`)
@@ -22,9 +29,11 @@ function MiniPalette(props) {
   ))
   return (
     <div className={classes.root} onClick={() => goToPalette(id)}>
-      <div className={classes.delete}>
-        <DeleteIcon className={classes.deleteIcon} style={{transition: "all 0.3s ease-in-out"}}/>
-      </div>
+      <DeleteIcon
+        className={classes.deleteIcon}
+        style={{transition: "all 0.3s ease-in-out"}}
+        onClick={deleteAPalette}
+      />
       <div className={classes.colors}>
         {miniColorBoxes}
       </div>

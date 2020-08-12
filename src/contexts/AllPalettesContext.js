@@ -19,8 +19,12 @@ export function AllPalettesProvider(props) {
     setAllPalettes([...palettes, newPalette]);
   }
 
+  const deletePalette = id => {
+    setAllPalettes(allPalettes.filter(palette => palette.id !== id))
+  }
+
   return (
-    <AllPalettesContext.Provider value={{allPalettes, addToAllPalettes}}>
+    <AllPalettesContext.Provider value={{allPalettes, addToAllPalettes, deletePalette}}>
       {props.children}
     </AllPalettesContext.Provider>
   )

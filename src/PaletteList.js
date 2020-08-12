@@ -16,7 +16,7 @@ function PaletteList(props) {
         </nav>
         <div className={classes.palettes}>
           {allPalettes.map(palette=> (
-            <MiniPalette key={palette.paletteName} {...palette} />
+            <MiniPalette key={palette.paletteName} id={palette.id} {...palette} />
           ))}
         </div>
       </div>
