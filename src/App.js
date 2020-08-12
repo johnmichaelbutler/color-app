@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {FormatProvider} from './contexts/FormatContext';
 import { LevelProvider } from './contexts/LevelContext';
 import { SnackbarOpenProvider } from './contexts/SnackbarOpenContext';
@@ -15,7 +15,6 @@ import NewPaletteForm from './NewPaletteForm';
 import SingleColorPalette from './SingleColorPalette';
 
 function App() {
-
   return (
     <div className="App">
       <FormatProvider>

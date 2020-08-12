@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import PaletteFormNav from './PaletteFormNav';
 import clsx from 'clsx';
@@ -20,7 +20,6 @@ import useStyles from './styles/NewPaletteFormsStyles';
 function NewPaletteForm(props) {
   const {allPalettes } = useContext(AllPalettesContext);
   const {drawerOpen, setDrawerOpen} = useContext(DrawerOpenContext);
-
   const {customColors, setCustomColors} = useContext(CustomColorsContext);
 
 

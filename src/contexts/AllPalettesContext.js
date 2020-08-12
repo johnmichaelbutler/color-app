@@ -2,15 +2,22 @@
 This context is used to manage all palettes, including custom palettes
 */
 
-import React, { useState, createContext } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import seedColors from '../seedColors';
 
 export const AllPalettesContext = createContext();
 
 export function AllPalettesProvider(props) {
-  const [allPalettes, setAllPalettes] = useState(seedColors);
+  const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"))
+  const [allPalettes, setAllPalettes] = useState(savedPalettes || seedColors);
 
-  const addToAllPalettes = (palettes, newPalette) => setAllPalettes([...palettes, newPalette]);
+  useEffect(() => {
+    window.localStorage.setItem("palettes", JSON.stringify(allPalettes));
+  }, [allPalettes])
+
+  const addToAllPalettes = async (palettes, newPalette) => {
+    setAllPalettes([...palettes, newPalette]);
+  }
 
   return (
     <AllPalettesContext.Provider value={{allPalettes, addToAllPalettes}}>
