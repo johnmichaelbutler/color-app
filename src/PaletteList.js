@@ -1,51 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import MiniPalette from './MiniPalette';
-import { withStyles } from '@material-ui/styles';
-
-import './PaletteList.css';
-import { useContext } from 'react';
 import { AllPalettesContext } from './contexts/AllPalettesContext';
-
-const styles = {
-  root: {
-    backgroundColor: "blue",
-    height: "100vh",
-    display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "center",
-  },
-  container: {
-    width: "50%",
-    display: "flex",
-    alignItems: "flex-start",
-    flexDirection: "column",
-    flexWrap: "wrap",
-  },
-  nav: {
-    display: "flex",
-    width: "100%",
-    justifyContent: "space-between",
-    color: "white",
-    alignItems: "center",
-    "& a": {
-      color: "white",
-      textDecoration: "none"
-    }
-  },
-  palettes: {
-    boxSizing: "border-box",
-    width: "100%",
-    display: "grid",
-    gridTemplateColumns: "repeat(3, 30%)",
-    gridGap: "5%"
-  }
-}
-
+import useStyles from './styles/PaletteListStyles';
 
 function PaletteList(props) {
   const { allPalettes } = useContext(AllPalettesContext);
-  const { classes } = props;
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <div classes={classes.container}>
@@ -63,4 +24,4 @@ function PaletteList(props) {
   )
 }
 
-export default withStyles(styles)(PaletteList);
+export default PaletteList;

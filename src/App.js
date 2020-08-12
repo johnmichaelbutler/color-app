@@ -12,8 +12,6 @@ import { Route, Switch } from 'react-router-dom';
 import Palette from './Palette';
 import PaletteList from './PaletteList';
 import NewPaletteForm from './NewPaletteForm';
-
-import './App.css';
 import SingleColorPalette from './SingleColorPalette';
 
 function App() {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Link, withRouter } from 'react-router-dom';
 import chroma from 'chroma-js';
-import './ColorBox.css';
+import './styles/ColorBox.css';
 
 function ColorBox(props) {
   const [copied, setCopied] = useState(false);
