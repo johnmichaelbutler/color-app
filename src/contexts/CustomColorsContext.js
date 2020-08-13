@@ -1,11 +1,10 @@
-import React, { useState, useContext, createContext } from 'react';
-import {AllPalettesContext} from './AllPalettesContext';
+import React, { useState, createContext } from 'react';
+import seedColors from '../seedColors';
 
 export const CustomColorsContext = createContext();
 
 export function CustomColorsProvider(props) {
-  const {allPalettes} = useContext(AllPalettesContext);
-  const [customColors, setCustomColors] = useState(allPalettes[0].colors);
+  const [customColors, setCustomColors] = useState(seedColors[0].colors);
 
   return (
     <CustomColorsContext.Provider value={{customColors, setCustomColors}}>

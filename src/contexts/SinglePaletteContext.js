@@ -29,7 +29,7 @@ export function SinglePaletteProvider(props) {
     return generatePalette(seedPalette);
   };
 
-  const [palette, setPalette] = useState(makeSinglePalette("material-ui-colors"));
+  const [palette, setPalette] = useState(makeSinglePalette("material-ui-colors" || ""));
 
   const changePalette = id => setPalette(makeSinglePalette(id));
 

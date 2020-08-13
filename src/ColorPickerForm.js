@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Button from '@material-ui/core/Button';
 import {ChromePicker} from 'react-color';
+import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { CustomColorsContext } from './contexts/CustomColorsContext';
 import { CurrentColorContext } from './contexts/CurrentColorContext';
@@ -40,7 +40,7 @@ function ColorPickerForm() {
         onChangeComplete={(newColor) => setCurrentColor(newColor.hex)}
         className={classes.picker}
       />
-      <ValidatorForm onSubmit={addNewColor}>
+      <ValidatorForm onSubmit={addNewColor} instantValidate={false}>
         <TextValidator
           autoFocus
           variant="filled"

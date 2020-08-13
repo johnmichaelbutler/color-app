@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 import { FormatContext } from './contexts/FormatContext';
 import { LevelContext } from './contexts/LevelContext';
 import { SnackbarOpenContext } from './contexts/SnackbarOpenContext';
-import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Snackbar from '@material-ui/core/Snackbar';

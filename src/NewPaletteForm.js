@@ -1,19 +1,19 @@
 import React, { useContext } from 'react';
 import { withRouter } from 'react-router-dom';
-import PaletteFormNav from './PaletteFormNav';
+import arrayMove from 'array-move';
 import clsx from 'clsx';
-import DraggableColorList from './DraggableColorList';
-import ColorPickerForm from './ColorPickerForm'
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
+import PaletteFormNav from './PaletteFormNav';
+import DraggableColorList from './DraggableColorList';
+import ColorPickerForm from './ColorPickerForm'
 import { AllPalettesContext } from './contexts/AllPalettesContext';
 import { DrawerOpenContext } from './contexts/DrawerOpenContext';
 import {CustomColorsContext} from './contexts/CustomColorsContext';
-import arrayMove from 'array-move';
 
 import useStyles from './styles/NewPaletteFormsStyles';
 

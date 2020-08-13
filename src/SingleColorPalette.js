@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from './Navbar';
-import PaletteFooter from './PaletteFooter';
 import { SinglePaletteContext } from './contexts/SinglePaletteContext';
 import { FormatContext } from './contexts/FormatContext';
+import Navbar from './Navbar';
+import PaletteFooter from './PaletteFooter';
 import ColorBox from './ColorBox';
 import useStyles from './styles/PaletteStyles';
 

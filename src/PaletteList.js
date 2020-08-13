@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import MiniPalette from './MiniPalette';import Dialog from '@material-ui/core/Dialog';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import Dialog from '@material-ui/core/Dialog';
 import blue from '@material-ui/core/colors/blue';
 import red from '@material-ui/core/colors/red';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -12,10 +13,10 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 import { AllPalettesContext } from './contexts/AllPalettesContext';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import useStyles from './styles/PaletteListStyles';
+import MiniPalette from './MiniPalette';
 
-function PaletteList(props) {
+function PaletteList() {
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [deletingId, setDeletingId] = useState("");
   const { allPalettes, deletePalette } = useContext(AllPalettesContext);

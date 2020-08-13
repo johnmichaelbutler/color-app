@@ -1,4 +1,6 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import {TransitionGroup, CSSTransition } from 'react-transition-group';
 import {FormatProvider} from './contexts/FormatContext';
 import { LevelProvider } from './contexts/LevelContext';
 import { SnackbarOpenProvider } from './contexts/SnackbarOpenContext';
@@ -8,8 +10,6 @@ import { DrawerOpenProvider } from './contexts/DrawerOpenContext';
 import { NewPaletteNameProvider } from './contexts/NewPaletteNameContext';
 import { CurrentColorProvider } from './contexts/CurrentColorContext';
 import { CustomColorsProvider }from './contexts/CustomColorsContext';
-import {TransitionGroup, CSSTransition } from 'react-transition-group';
-import { Route, Switch } from 'react-router-dom';
 import Palette from './Palette';
 import PaletteList from './PaletteList';
 import NewPaletteForm from './NewPaletteForm';
