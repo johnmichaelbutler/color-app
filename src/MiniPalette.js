@@ -7,8 +7,7 @@ import { AllPalettesContext } from './contexts/AllPalettesContext';
 
 function MiniPalette(props) {
   const classes = useStyles();
-  const{ paletteName, emoji, id, history } = props;
-  const { customColors } = useContext(CustomColorsContext);
+  const{ paletteName, emoji, id, history, colors } = props;
   const { deletePalette } = useContext(AllPalettesContext);
 
   const deleteAPalette = (e) => {
@@ -20,7 +19,7 @@ function MiniPalette(props) {
     history.push(`/palette/${id}`)
   }
 
-  const miniColorBoxes = customColors.map(color => (
+  const miniColorBoxes = colors.map(color => (
     <div
       className={classes.miniColor}
       style={{backgroundColor: color.color}}

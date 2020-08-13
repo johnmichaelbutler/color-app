@@ -15,13 +15,16 @@ export function AllPalettesProvider(props) {
     window.localStorage.setItem("palettes", JSON.stringify(allPalettes));
   }, [allPalettes])
 
-  const addToAllPalettes = async (palettes, newPalette) => {
+  const addToAllPalettes = (palettes, newPalette) => {
     setAllPalettes([...palettes, newPalette]);
   }
 
   const deletePalette = id => {
     setAllPalettes(allPalettes.filter(palette => palette.id !== id))
   }
+
+// For testing
+  console.log("allPalettes", allPalettes);
 
   return (
     <AllPalettesContext.Provider value={{allPalettes, addToAllPalettes, deletePalette}}>

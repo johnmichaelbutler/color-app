@@ -3,6 +3,15 @@ import sizes from './sizes';
 import bg from './bg.svg';
 
 const useStyles = makeStyles({
+  "@global": {
+    ".fade-exit": {
+      opacity: 1
+    },
+    ".fade-exit-active": {
+      opacity: 0,
+      transition: "opacity 500ms ease-out"
+    }
+  },
   root: {
     height: "100vh",
     display: "flex",
