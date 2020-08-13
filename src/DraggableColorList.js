@@ -1,14 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import DraggableColorBox from './DraggableColorBox';
 import {SortableContainer} from 'react-sortable-hoc';
-import {CustomColorsContext} from './contexts/CustomColorsContext';
 
 const DraggableColorList = SortableContainer((props) => {
-  const {removeColor} = props;
-  const {customColors} = useContext(CustomColorsContext);
+  const {removeColor, colors} = props;
   return (
     <div style={{height: "100%"}}>
-      {customColors.map((color, i) => (
+      {colors.map((color, i) => (
         <DraggableColorBox
           index={i}
           key={color.name}

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import arrayMove from 'array-move';
 import clsx from 'clsx';
@@ -12,14 +12,13 @@ import PaletteFormNav from './PaletteFormNav';
 import DraggableColorList from './DraggableColorList';
 import ColorPickerForm from './ColorPickerForm'
 import { AllPalettesContext } from './contexts/AllPalettesContext';
-import { DrawerOpenContext } from './contexts/DrawerOpenContext';
 import {CustomColorsContext} from './contexts/CustomColorsContext';
 
 import useStyles from './styles/NewPaletteFormsStyles';
 
-function NewPaletteForm(props) {
+function NewPaletteForm() {
   const {allPalettes } = useContext(AllPalettesContext);
-  const {drawerOpen, setDrawerOpen} = useContext(DrawerOpenContext);
+  const [drawerOpen, setDrawerOpen] = useState(true);
   const {customColors, setCustomColors} = useContext(CustomColorsContext);
 
 
@@ -53,7 +52,10 @@ function NewPaletteForm(props) {
 
   return (
     <div className={classes.root}>
-      <PaletteFormNav />
+      <PaletteFormNav
+        drawerOpen={drawerOpen}
+        setDrawerOpen={setDrawerOpen}
+      />
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -79,7 +81,10 @@ function NewPaletteForm(props) {
               Random Color
             </Button>
           </div>
-          <ColorPickerForm />
+          <ColorPickerForm
+            customColors={customColors}
+            setCustomColors={setCustomColors}
+          />
         </div>
       </Drawer>
       <main
@@ -89,6 +94,7 @@ function NewPaletteForm(props) {
       >
         <div className={classes.drawerHeader} />
         <DraggableColorList
+          colors={customColors}
           removeColor={removeColor}
           axis="xy"
           onSortEnd={onSortEnd}

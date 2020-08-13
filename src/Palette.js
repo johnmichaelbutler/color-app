@@ -1,6 +1,5 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FormatContext } from './contexts/FormatContext';
-import { LevelContext } from './contexts/LevelContext';
 import { SinglePaletteContext } from './contexts/SinglePaletteContext';
 import ColorBox from './ColorBox';
 import PaletteFooter from './PaletteFooter';
@@ -13,13 +12,17 @@ function Palette(props) {
 
   const id = props.match.params.id;
   const { format } = useContext(FormatContext);
-  const { level } = useContext(LevelContext);
+  const [level, setLevel] = useState(500);
   const { palette, changePalette } = useContext(SinglePaletteContext);
   const classes = useStyles();
 
   useEffect(() => {
     changePalette(id);
   }, [id]);
+
+  const changeLevel = (level) => {
+    setLevel(level);
+  }
 
   const colorBoxes = palette.colors[level].map(color => (
     <ColorBox
@@ -34,7 +37,10 @@ function Palette(props) {
 
   return (
     <div className={classes.Palette}>
-      <Navbar />
+      <Navbar
+        level={level}
+        changeLevel={changeLevel}
+      />
       <div className={classes.colors}>
         {colorBoxes}
       </div>

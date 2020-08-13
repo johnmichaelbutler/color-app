@@ -10,7 +10,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { AllPalettesContext } from './contexts/AllPalettesContext';
-import { NewPaletteNameContext } from './contexts/NewPaletteNameContext';
 import { CustomColorsContext } from './contexts/CustomColorsContext';
 
 function PaletteMetaForm(props) {
@@ -20,7 +19,7 @@ function PaletteMetaForm(props) {
   const { history, openForm, hideForm, setOpenForm } = props;
 
   const {allPalettes, addToAllPalettes } = useContext(AllPalettesContext);
-  const { newPaletteName, setNewPaletteName } = useContext(NewPaletteNameContext);
+  const [newPaletteName, setNewPaletteName] = useState("");
   const {customColors} = useContext(CustomColorsContext);
 
   useEffect(() => {

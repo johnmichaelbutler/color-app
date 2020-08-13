@@ -1,15 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import {ChromePicker} from 'react-color';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import { CustomColorsContext } from './contexts/CustomColorsContext';
-import { CurrentColorContext } from './contexts/CurrentColorContext';
 import useStyles from './styles/ColorPickerFormStyles';
 
-function ColorPickerForm() {
+function ColorPickerForm(props) {
+  const [currentColor, setCurrentColor] = useState("teal");
   const [newColorName, setNewColorName] = useState("");
-  const {customColors, setCustomColors} = useContext(CustomColorsContext);
-  const {currentColor, setCurrentColor} = useContext(CurrentColorContext);
+  const {customColors, setCustomColors} = props;
   const maxColors = 20;
   const paletteIsFull = customColors.length >= maxColors;
   const classes = useStyles();
