@@ -42,6 +42,7 @@ function ColorPickerForm() {
       />
       <ValidatorForm onSubmit={addNewColor}>
         <TextValidator
+          autoFocus
           variant="filled"
           margin="normal"
           placeholder="Color Name"

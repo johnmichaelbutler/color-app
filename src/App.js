@@ -14,8 +14,7 @@ import Palette from './Palette';
 import PaletteList from './PaletteList';
 import NewPaletteForm from './NewPaletteForm';
 import SingleColorPalette from './SingleColorPalette';
-
-import './styles/App.css';
+import Page from './Page';
 
 function App() {
   return (
@@ -31,12 +30,27 @@ function App() {
                       <SinglePaletteProvider>
                         <Route render={({location}) =>
                         <TransitionGroup>
-                          <CSSTransition key={location.key}classNames='fade' timeout={500}>
+                          <CSSTransition key={location.key} classNames='page' timeout={500}>
                             <Switch location={location}>
-                              <Route exact path="/palette/new" render={() => <div className='page'><NewPaletteForm/></div>} />
-                              <Route exact path='/' render={() => <PaletteList />} />
-                              <Route exact path='/palette/:id' render={(props) => <div className='page'><Palette {...props} /></div>} />
-                              <Route exact path='/palette/:paletteId/:colorId' render={(props) => <div className='page'><SingleColorPalette {...props} /></div>} />
+                              <Route
+                                exact
+                                path="/palette/new"
+                                render={() => <Page><NewPaletteForm/></Page>}
+                              />
+                              <Route
+                                exact path='/'
+                                render={() => <Page><PaletteList /></Page>}
+                                />
+                              <Route
+                                exact
+                                path='/palette/:id'
+                                render={(props) => <Page><Palette {...props} /></Page>}
+                              />
+                              <Route
+                                exact
+                                path='/palette/:paletteId/:colorId'
+                                render={(props) => <Page><SingleColorPalette {...props} /></Page>}
+                              />
                             </Switch>
                           </CSSTransition>
                         </TransitionGroup>

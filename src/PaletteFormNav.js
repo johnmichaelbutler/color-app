@@ -66,9 +66,9 @@ function PaletteFormNav(props) {
               color="primary"
               onClick={showForm}
             >
-              Open form dialog
+              Save Palette
             </Button>
-            {formShowing && <PaletteMetaForm hideForm={hideForm} openForm={formShowing} />}
+            {formShowing && <PaletteMetaForm hideForm={hideForm} setOpenForm={setFormShowing} openForm={formShowing} />}
           </div>
       </AppBar>
     </div>

@@ -17,7 +17,7 @@ function PaletteMetaForm(props) {
 
   const [emojiOpen, setEmojiOpen] = useState(false);
 
-  const { history, openForm, hideForm } = props;
+  const { history, openForm, hideForm, setOpenForm } = props;
 
   const {allPalettes, addToAllPalettes } = useContext(AllPalettesContext);
   const { newPaletteName, setNewPaletteName } = useContext(NewPaletteNameContext);
@@ -31,6 +31,7 @@ function PaletteMetaForm(props) {
   }, [allPalettes]);
 
   const savePalette = (emoji) => {
+    setOpenForm(false);
     const newPalette = {
       paletteName: newPaletteName,
       id: newPaletteName.toLowerCase().replace(/ /g, "-"),
@@ -54,6 +55,7 @@ function PaletteMetaForm(props) {
               Please enter a name for your new beautiful palette. Make sure it's unique.
             </DialogContentText>
             <TextValidator
+              autoFocus
               label='Palette Name'
               value={newPaletteName}
               onChange={(e) => setNewPaletteName(e.target.value)}
