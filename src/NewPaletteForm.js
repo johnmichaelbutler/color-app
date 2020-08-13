@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import PaletteFormNav from './PaletteFormNav';
 import clsx from 'clsx';

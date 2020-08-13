@@ -4,15 +4,14 @@ import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
 import { SinglePaletteContext } from './contexts/SinglePaletteContext';
 import { FormatContext } from './contexts/FormatContext';
-
-
 import ColorBox from './ColorBox';
+import useStyles from './styles/PaletteStyles';
 
 function SingleColorPalette(props) {
   const { paletteId, colorId } = props.match.params;
-
   const { palette, changePalette, gatherShades } = useContext(SinglePaletteContext);
   const { format } = useContext(FormatContext);
+  const classes = useStyles();
 
   const shades = gatherShades(palette, colorId);
 
@@ -30,14 +29,14 @@ function SingleColorPalette(props) {
   ));
 
   return (
-    <div className='Palette SingleColorPalette'>
+    <div className={classes.Palette}>
       <Navbar isShowingOneColor />
-      <div className="Palette-colors">
+      <div className={classes.colors}>
         {colorBoxes}
-        <div className="go-back ColorBox">
-          <Link to= {`/palette/${paletteId}`} className="back-button">Go Back</Link>
+        <div className={classes.goBack}>
+          <Link to= {`/palette/${paletteId}`}>Go Back</Link>
         </div>
-        </div>
+      </div>
       <PaletteFooter palette={palette} />
     </div>
   )

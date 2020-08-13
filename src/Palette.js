@@ -6,7 +6,8 @@ import ColorBox from './ColorBox';
 import PaletteFooter from './PaletteFooter';
 import Navbar from './Navbar';
 
-import './styles/Palette.css';
+
+import useStyles from './styles/PaletteStyles.js';
 
 function Palette(props) {
 
@@ -14,6 +15,7 @@ function Palette(props) {
   const { format } = useContext(FormatContext);
   const { level } = useContext(LevelContext);
   const { palette, changePalette } = useContext(SinglePaletteContext);
+  const classes = useStyles();
 
   useEffect(() => {
     changePalette(id);
@@ -31,9 +33,9 @@ function Palette(props) {
   ));
 
   return (
-    <div className="Palette">
+    <div className={classes.Palette}>
       <Navbar />
-      <div className="Palette-colors">
+      <div className={classes.colors}>
         {colorBoxes}
       </div>
       <PaletteFooter palette={palette} />

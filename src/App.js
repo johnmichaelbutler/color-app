@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {FormatProvider} from './contexts/FormatContext';
 import { LevelProvider } from './contexts/LevelContext';
 import { SnackbarOpenProvider } from './contexts/SnackbarOpenContext';

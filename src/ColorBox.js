@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Link, withRouter } from 'react-router-dom';
-import chroma from 'chroma-js';
 import useStyles from './styles/ColorBoxStyles.js';
 
 function ColorBox(props) {
   const [copied, setCopied] = useState(false);
   const { name, backgroundColor, id, paletteId, showLink } = props;
-  const isDarkColor = chroma(backgroundColor).luminance() <= 0.08;
-  const isLightColor = chroma(backgroundColor).luminance() >= 0.7;
 
   const classes = useStyles(props);
 

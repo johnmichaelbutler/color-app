@@ -10,14 +10,14 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Snackbar from '@material-ui/core/Snackbar';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
-
-import './styles/Navbar.css';
+import useStyles from './styles/NavbarStyles';
 
 function Navbar(props) {
   const { isShowingOneColor } = props;
   const { format, changeFormat } = useContext(FormatContext);
   const { level, changeLevel } = useContext(LevelContext);
   const { snackbarOpen, changeSnackbarOpen } = useContext(SnackbarOpenContext);
+  const classes = useStyles();
 
   const changeFormatAndRespond = event => {
     changeFormat(event);
@@ -25,14 +25,14 @@ function Navbar(props) {
   }
 
   return (
-      <header className="Navbar">
-        <div className="logo">
+      <header className={classes.Navbar}>
+        <div className={classes.logo}>
           <Link to="/">reactcolorpicker</Link>
         </div>
         { !isShowingOneColor && (
-          <div className="slider-container">
+          <div>
             <span>Level: {level}</span>
-            <div className="Slider">
+            <div className={classes.slider}>
               <Slider
                 defaultValue={level}
                 min={100} max={900}
@@ -43,7 +43,7 @@ function Navbar(props) {
           </div>
         )}
 
-        <div className="select-container">
+        <div className={classes.selectContainer}>
           <Select value={format} onChange={changeFormatAndRespond}>
             <MenuItem value="hex">HEX - #ffffff</MenuItem>
             <MenuItem value="rgb">RGB - rgb(255, 255, 255)</MenuItem>
