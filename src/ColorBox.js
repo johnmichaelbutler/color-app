@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Link, withRouter } from 'react-router-dom';
 import chroma from 'chroma-js';
-import './styles/ColorBox.css';
+import useStyles from './styles/ColorBoxStyles.js';
 
 function ColorBox(props) {
   const [copied, setCopied] = useState(false);
   const { name, backgroundColor, id, paletteId, showLink } = props;
   const isDarkColor = chroma(backgroundColor).luminance() <= 0.08;
   const isLightColor = chroma(backgroundColor).luminance() >= 0.7;
+
+  const classes = useStyles(props);
 
   const changeCopyState = () => {
     setCopied(true);
@@ -17,25 +19,25 @@ function ColorBox(props) {
 
   return (
     <CopyToClipboard text={backgroundColor} onCopy={changeCopyState}>
-      <div style={{background: backgroundColor}} className="ColorBox">
+      <div style={{background: backgroundColor}} className={classes.ColorBox}>
         <div style={{background: backgroundColor}} className={`copy-overlay ${copied && "show"}`} />
-        <div className={`copy-message ${copied && "show"}`}>
+        <div className={`${classes.copyMessage} ${copied &&classes.showMessage}`}>
           <h1>Copied!</h1>
-          <p className={isLightColor ? "dark-text" : undefined}>{backgroundColor}</p>
+          <p className={classes.copyText}>{backgroundColor}</p>
         </div>
-        <div className="copy-container">
-          <div className="box-content">
-            <span className={ isDarkColor ? "light-text" : undefined}>
+        <div>
+          <div className={classes.boxContent}>
+            <span className={classes.colorName}>
               {name}
             </span>
           </div>
-          <button className={`copy-button ${isLightColor && "dark-text"}`}>
+          <button className={classes.copyButton}>
             Copy
           </button>
         </div>
         {showLink && (
           <Link to={`/palette/${paletteId}/${id}`} onClick={e => e.stopPropagation()}>
-            <span className={`see-more ${isLightColor && "dark-text"}`}>MORE</ span>
+            <span className={classes.seeMore}>MORE</ span>
           </Link>
         )}
       </div>
