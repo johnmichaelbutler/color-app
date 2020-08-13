@@ -51,6 +51,9 @@ function App() {
                                 path='/palette/:paletteId/:colorId'
                                 render={(props) => <Page><SingleColorPalette {...props} /></Page>}
                               />
+                              <Route
+                                render={() => <Page><PaletteList /></Page>}
+                              />
                             </Switch>
                           </CSSTransition>
                         </TransitionGroup>

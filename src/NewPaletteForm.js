@@ -27,14 +27,17 @@ function NewPaletteForm(props) {
   const paletteIsFull = customColors.length >= maxColors;
   const classes = useStyles();
 
-  const makeRandomColor = () => {
+  const addRandomColor = () => {
     const allColors = allPalettes.map(p => p.colors).flat();
     let rand = Math.floor(Math.random() * allColors.length);
-    return allColors[rand];
-  }
-
-  const addRandomColor = () => {
-    const {color, name} = makeRandomColor();
+    let randomColor = allColors[rand];
+    let isDuplicateColor = true;
+    while(isDuplicateColor) {
+      rand = Math.floor(Math.random() * allColors.length);
+      randomColor = allColors[rand];
+      isDuplicateColor = customColors.some(color => color.name === randomColor.name)
+    }
+    const {color, name} = randomColor
     const newColor = {color: color, name: name};
     setCustomColors([...customColors, newColor]);
   }
