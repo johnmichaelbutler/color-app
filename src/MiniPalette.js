@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import { withRouter } from 'react-router-dom';
 import useStyles from './styles/MiniPaletteStyles';
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -10,10 +10,10 @@ function MiniPalette(props) {
   const deleteAPalette = (e) => {
     e.stopPropagation();
     openDialog(id);
-    // deletePalette(id);
   }
 
-  const goToPalette = id => {
+  const handleClick = () => {
+    console.log("ID", id);
     history.push(`/palette/${id}`)
   }
 
@@ -24,8 +24,10 @@ function MiniPalette(props) {
       key={color.name}
     />
   ))
+
+  console.log("Rendering", paletteName);
   return (
-    <div className={classes.root} onClick={() => goToPalette(id)}>
+    <div className={classes.root} onClick={handleClick}>
       <DeleteIcon
         className={classes.deleteIcon}
         style={{transition: "all 0.3s ease-in-out"}}
@@ -41,4 +43,4 @@ function MiniPalette(props) {
   )
 }
 
-export default withRouter(MiniPalette);
+export default memo(withRouter(MiniPalette));

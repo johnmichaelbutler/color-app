@@ -7,9 +7,6 @@ export function CustomColorsProvider(props) {
   const {allPalettes} = useContext(AllPalettesContext);
   const [customColors, setCustomColors] = useState(allPalettes[0].colors);
 
-
-  // For Testing
-  console.log("customColors", customColors);
   return (
     <CustomColorsContext.Provider value={{customColors, setCustomColors}}>
       {props.children}

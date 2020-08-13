@@ -46,7 +46,13 @@ function PaletteList(props) {
         <TransitionGroup className={classes.palettes}>
           {allPalettes.map(palette=> (
             <CSSTransition key={palette.id} classNames='fade' timeout={500}>
-              <MiniPalette key={palette.paletteName} colors={palette.colors} openDialog={openDialog} id={palette.id} {...palette} />
+              <MiniPalette
+                key={palette.paletteName}
+                colors={palette.colors}
+                openDialog={openDialog}
+                id={palette.id}
+                {...palette}
+              />
             </CSSTransition>
           ))}
         </TransitionGroup>
