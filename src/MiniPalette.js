@@ -1,18 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { CustomColorsContext } from './contexts/CustomColorsContext';
 import useStyles from './styles/MiniPaletteStyles';
 import DeleteIcon from '@material-ui/icons/Delete'
-import { AllPalettesContext } from './contexts/AllPalettesContext';
 
 function MiniPalette(props) {
   const classes = useStyles();
-  const{ paletteName, emoji, id, history, colors } = props;
-  const { deletePalette } = useContext(AllPalettesContext);
+  const{ paletteName, emoji, id, history, colors, openDialog } = props;
 
   const deleteAPalette = (e) => {
     e.stopPropagation();
-    deletePalette(id);
+    openDialog(id);
+    // deletePalette(id);
   }
 
   const goToPalette = id => {
