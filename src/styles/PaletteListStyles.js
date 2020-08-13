@@ -1,13 +1,17 @@
 import { makeStyles } from '@material-ui/core/styles';
 import sizes from './sizes';
+import bg from './bg.svg';
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: "blue",
     height: "100vh",
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "center",
+    /* background by SVGBackgrounds.com */
+    backgroundColor: "#ffffff",
+    backgroundImage: `url(${bg})`,
+    overflow: "scroll"
   },
   container: {
     width: "50%",
@@ -29,8 +33,9 @@ const useStyles = makeStyles({
     color: "white",
     alignItems: "center",
     "& a": {
-      color: "white",
-      textDecoration: "none"
+      color: "rgba(0, 0, 0, 0.5)",
+      textDecoration: "none",
+      fontSize: "1.7rem",
     }
   },
   palettes: {
@@ -44,8 +49,12 @@ const useStyles = makeStyles({
     },
     [sizes.down("xs")]: {
       gridTemplateColumns: "repeat(1, 100%)",
-      gridGap: "1rem"
+      gridGap: "1.3rem"
     }
+  },
+  heading: {
+    fontSize: "2rem",
+    color: "rgba(0, 0, 0, 0.5)"
   }
 });
 
