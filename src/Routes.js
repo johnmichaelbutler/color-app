@@ -17,24 +17,44 @@ function Routes() {
               <Route
                 exact
                 path="/palette/new"
-                render={() => <Page><NewPaletteForm/></Page>}
+                render={() =>
+                  <Page>
+                    <NewPaletteForm/>
+                  </Page>
+                }
               />
-              <Route
-                exact path='/'
-                render={() => <Page><PaletteList /></Page>}
-                />
               <Route
                 exact
                 path='/palette/:id'
-                render={(props) => <Page><Palette {...props} /></Page>}
+                render={(props) =>
+                  <Page>
+                    <Palette {...props} />
+                  </Page>
+                }
               />
               <Route
                 exact
                 path='/palette/:paletteId/:colorId'
-                render={(props) => <Page><SingleColorPalette {...props} /></Page>}
+                render={(props) =>
+                  <Page>
+                    <SingleColorPalette {...props} />
+                  </Page>
+                }
               />
               <Route
-                render={() => <Page><PaletteList /></Page>}
+                exact path='/'
+                render={() =>
+                  <Page>
+                    <PaletteList />
+                  </Page>
+                }
+              />
+              <Route
+                render={() =>
+                  <Page>
+                    <PaletteList />
+                  </Page>
+                }
               />
             </Switch>
           </CSSTransition>

@@ -15,6 +15,10 @@ function ColorBox(props) {
     setTimeout(() => setCopied(false), 1500);
   }
 
+
+  // TESTING
+  console.log("ColorBox rendering");
+
   return (
     <CopyToClipboard text={backgroundColor} onCopy={changeCopyState}>
       <div style={{background: backgroundColor}} className={classes.ColorBox}>

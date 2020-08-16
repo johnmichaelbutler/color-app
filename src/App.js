@@ -8,15 +8,15 @@ import Routes from './Routes';
 function App() {
   return (
     <div className="App">
-      <AllPalettesProvider>
-        <CustomColorsProvider>
-          <SinglePaletteProvider>
-            <FormatProvider>
+      <CustomColorsProvider>
+        <FormatProvider>
+          <AllPalettesProvider>
+            <SinglePaletteProvider>
               <Routes />
-            </FormatProvider>
-          </SinglePaletteProvider>
-        </CustomColorsProvider>
-      </AllPalettesProvider>
+            </SinglePaletteProvider>
+          </AllPalettesProvider>
+        </FormatProvider>
+      </CustomColorsProvider>
     </div>
   );
 }

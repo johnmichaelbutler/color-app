@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, memo, useEffect, useState } from 'react';
 import { FormatContext } from './contexts/FormatContext';
 import { SinglePaletteContext } from './contexts/SinglePaletteContext';
 import ColorBox from './ColorBox';
@@ -23,6 +23,9 @@ function Palette(props) {
   const changeLevel = (level) => {
     setLevel(level);
   }
+
+  // TESTING
+  console.log("Palette rendering");
 
   const colorBoxes = palette.colors[level].map(color => (
     <ColorBox
@@ -49,4 +52,4 @@ function Palette(props) {
   )
 };
 
-export default Palette;
+export default memo(Palette);

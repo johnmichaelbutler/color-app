@@ -13,7 +13,6 @@ function MiniPalette(props) {
   }
 
   const handleClick = () => {
-    console.log("ID", id);
     history.push(`/palette/${id}`)
   }
 
@@ -25,7 +24,9 @@ function MiniPalette(props) {
     />
   ))
 
-  console.log("Rendering", paletteName);
+
+  // TESTING
+  console.log("MiniPalette rendering");
   return (
     <div className={classes.root} onClick={handleClick}>
       <DeleteIcon

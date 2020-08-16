@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { memo, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { SinglePaletteContext } from './contexts/SinglePaletteContext';
 import { FormatContext } from './contexts/FormatContext';
@@ -18,6 +18,10 @@ function SingleColorPalette(props) {
   useEffect(() => {
     changePalette(paletteId);
   }, [paletteId]);
+
+
+  // TESTING
+  console.log("SingleColorPalette rendering");
 
   const colorBoxes = shades.map(color => (
     <ColorBox
@@ -42,4 +46,4 @@ function SingleColorPalette(props) {
   )
 }
 
-export default SingleColorPalette;
+export default memo(SingleColorPalette);

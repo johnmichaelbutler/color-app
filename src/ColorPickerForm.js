@@ -7,7 +7,7 @@ import useStyles from './styles/ColorPickerFormStyles';
 function ColorPickerForm(props) {
   const [currentColor, setCurrentColor] = useState("teal");
   const [newColorName, setNewColorName] = useState("");
-  const {customColors, setCustomColors} = props;
+  const {customColors, colorsDispatch} = props;
   const maxColors = 20;
   const paletteIsFull = customColors.length >= maxColors;
   const classes = useStyles();
@@ -26,10 +26,13 @@ function ColorPickerForm(props) {
       color: currentColor,
       name: newColorName
     }
-    setCustomColors([...customColors, newColor]);
+    colorsDispatch({type: "ADD_NEW_COLOR", payload: newColor});
     setNewColorName("");
   }
 
+
+  // TESTING
+  console.log("ColorPickerForm rendering");
 
   return (
     <div className={classes.root}>

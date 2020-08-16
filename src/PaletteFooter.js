@@ -1,7 +1,11 @@
-import React from 'react'
+import React, {memo} from 'react'
 
 function PaletteFooter(props) {
   const {palette} = props;
+
+
+  // TESTING
+  console.log("PaletteFooter rendering");
   return (
     <div>
       <footer className="Palette-footer">
@@ -12,4 +16,4 @@ function PaletteFooter(props) {
   )
 }
 
-export default PaletteFooter;
+export default memo(PaletteFooter);

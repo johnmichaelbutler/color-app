@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Dialog from '@material-ui/core/Dialog';
@@ -12,14 +12,15 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
-import { AllPalettesContext } from './contexts/AllPalettesContext';
+import { AllPalettesContext, PaletteDispatchContext } from './contexts/AllPalettesContext';
 import useStyles from './styles/PaletteListStyles';
 import MiniPalette from './MiniPalette';
 
 function PaletteList() {
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [deletingId, setDeletingId] = useState("");
-  const { allPalettes, deletePalette } = useContext(AllPalettesContext);
+  const allPalettes = useContext(AllPalettesContext);
+  const paletteDispatch = useContext(PaletteDispatchContext);
   const classes = useStyles();
 
   const openDialog = id => {
@@ -33,9 +34,13 @@ function PaletteList() {
   }
 
   const confirmDelete = () => {
-    deletePalette(deletingId);
+    paletteDispatch({type: "DELETE_PALETTE", payload: deletingId});
     closeDialog();
   }
+
+
+  // TESTING
+  console.log("PaletteList rendering");
 
   return (
     <div className={classes.root}>
@@ -83,4 +88,4 @@ function PaletteList() {
   )
 }
 
-export default PaletteList;
+export default memo(PaletteList);

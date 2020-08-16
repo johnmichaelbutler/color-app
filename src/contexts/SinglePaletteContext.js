@@ -21,7 +21,7 @@ export const gatherShades = (palette, colorToFilterBy) => {
 }
 
 export function SinglePaletteProvider(props) {
-  const { allPalettes } = useContext(AllPalettesContext);
+  const allPalettes = useContext(AllPalettesContext);
 
   // Creates all the different color levels for all colors in a palette
   const makeSinglePalette = id => {
@@ -32,6 +32,9 @@ export function SinglePaletteProvider(props) {
   const [palette, setPalette] = useState(makeSinglePalette("material-ui-colors" || ""));
 
   const changePalette = id => setPalette(makeSinglePalette(id));
+
+    // TESTING
+    console.log("SinglePaletteContext rendering");
 
   return (
     <SinglePaletteContext.Provider value={{ palette, changePalette, gatherShades }}>

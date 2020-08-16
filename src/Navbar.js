@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { memo, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
@@ -22,8 +22,12 @@ function Navbar(props) {
 
   const changeFormatAndRespond = event => {
     changeFormat(event);
-    closeSnackbar();
+    setSnackbarOpen(true);
   }
+
+
+  // TESTING
+  console.log("Navbarrendering");
 
   return (
       <header className={classes.Navbar}>
@@ -74,4 +78,4 @@ function Navbar(props) {
   )
 }
 
-export default Navbar;
+export default memo(Navbar);

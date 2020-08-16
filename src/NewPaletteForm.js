@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, memo } from 'react';
 import { withRouter } from 'react-router-dom';
-import arrayMove from 'array-move';
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
@@ -12,15 +11,15 @@ import PaletteFormNav from './PaletteFormNav';
 import DraggableColorList from './DraggableColorList';
 import ColorPickerForm from './ColorPickerForm'
 import { AllPalettesContext } from './contexts/AllPalettesContext';
-import {CustomColorsContext} from './contexts/CustomColorsContext';
+import {CustomColorsContext, ColorDispatchContext} from './contexts/CustomColorsContext';
 
 import useStyles from './styles/NewPaletteFormsStyles';
 
 function NewPaletteForm() {
-  const {allPalettes } = useContext(AllPalettesContext);
+  const allPalettes = useContext(AllPalettesContext);
   const [drawerOpen, setDrawerOpen] = useState(true);
-  const {customColors, setCustomColors} = useContext(CustomColorsContext);
-
+  const customColors = useContext(CustomColorsContext);
+  const colorsDispatch = useContext(ColorDispatchContext);
 
   const maxColors = 20;
   const paletteIsFull = customColors.length >= maxColors;
@@ -28,8 +27,8 @@ function NewPaletteForm() {
 
   const addRandomColor = () => {
     const allColors = allPalettes.map(p => p.colors).flat();
-    let rand = Math.floor(Math.random() * allColors.length);
-    let randomColor = allColors[rand];
+    let rand;
+    let randomColor;
     let isDuplicateColor = true;
     while(isDuplicateColor) {
       rand = Math.floor(Math.random() * allColors.length);
@@ -38,17 +37,23 @@ function NewPaletteForm() {
     }
     const {color, name} = randomColor
     const newColor = {color: color, name: name};
-    setCustomColors([...customColors, newColor]);
+    colorsDispatch({type: "ADD_NEW_COLOR", payload: newColor})
   }
 
   const removeColor = (colorName) => {
-    const filteredColors = customColors.filter(color => color.name !== colorName)
-    setCustomColors(filteredColors);
+    colorsDispatch({type: "REMOVE_COLOR", payload: colorName})
   }
 
+
   const onSortEnd = ({oldIndex, newIndex}) => {
-    setCustomColors(arrayMove(customColors, oldIndex, newIndex))
-  };
+    colorsDispatch({type: "ON_SORT_END", payload: { oldInd: oldIndex, newInd: newIndex}})
+  }
+
+  const clearColors = () => colorsDispatch({type: "CLEAR_COLORS"});
+
+
+  // TESTING
+  console.log("NewPaletteForm rendering");
 
   return (
     <div className={classes.root}>
@@ -74,7 +79,7 @@ function NewPaletteForm() {
         <div className={classes.container}>
           <Typography variant="h4" gutterBottom>Design Your Palette</Typography>
           <div className={classes.buttons}>
-            <Button className={classes.button} variant='contained' color="secondary" onClick={() => setCustomColors([])}>
+            <Button className={classes.button} variant='contained' color="secondary" onClick={clearColors}>
               Clear Palette
             </Button>
             <Button className={classes.button} disabled={paletteIsFull} variant='contained' color="primary" onClick={() => addRandomColor()}>
@@ -83,7 +88,7 @@ function NewPaletteForm() {
           </div>
           <ColorPickerForm
             customColors={customColors}
-            setCustomColors={setCustomColors}
+            colorsDispatch={colorsDispatch}
           />
         </div>
       </Drawer>
@@ -105,4 +110,4 @@ function NewPaletteForm() {
   );
 }
 
-export default withRouter(NewPaletteForm);
+export default memo(withRouter(NewPaletteForm));

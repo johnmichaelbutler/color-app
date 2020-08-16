@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { memo, useState, useEffect, useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import {Picker} from 'emoji-mart';
@@ -9,7 +9,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { AllPalettesContext } from './contexts/AllPalettesContext';
+import { AllPalettesContext, PaletteDispatchContext } from './contexts/AllPalettesContext';
 import { CustomColorsContext } from './contexts/CustomColorsContext';
 
 function PaletteMetaForm(props) {
@@ -18,9 +18,10 @@ function PaletteMetaForm(props) {
 
   const { history, openForm, hideForm, setOpenForm } = props;
 
-  const {allPalettes, addToAllPalettes } = useContext(AllPalettesContext);
+  const allPalettes = useContext(AllPalettesContext);
   const [newPaletteName, setNewPaletteName] = useState("");
-  const {customColors} = useContext(CustomColorsContext);
+  const customColors = useContext(CustomColorsContext);
+  const paletteDispatch = useContext(PaletteDispatchContext);
 
   useEffect(() => {
     ValidatorForm.addValidationRule("isPaletteNameUnique", value =>
@@ -37,10 +38,13 @@ function PaletteMetaForm(props) {
       colors: customColors,
       emoji: emoji.native
     };
-    addToAllPalettes(allPalettes, newPalette);
+    paletteDispatch({type: "ADD_PALETTE", payload: newPalette})
     history.push("/");
   }
 
+
+  // TESTING
+  console.log("PaletteMetaForm rendering");
   return (
     <>
       <Dialog open={emojiOpen} onClose={hideForm}>
@@ -82,4 +86,4 @@ function PaletteMetaForm(props) {
   );
 }
 
-export default withRouter(PaletteMetaForm);
+export default memo(withRouter(PaletteMetaForm));
