@@ -25,6 +25,7 @@ A user can select a color from a palette and see nine different variations of th
 <img src="public/readme_images/colorView.jpg" width="400">
 
 Example of responsive design
+
 <img src="public/readme_images/responsiveDesign.jpg" width="400">
 
 ## View The Project
