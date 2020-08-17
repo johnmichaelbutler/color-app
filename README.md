@@ -8,15 +8,15 @@ The focus of this application is on Hooks and Context API, not styling. The styl
 
 ## Project Screenshots
 
-![Homepage image] (./public/readme_images/Homepage.jpg?raw=true "Homepage")
+![Homepage image] (../public/readme_images/Homepage.jpg?raw=true "Homepage")
 
-![Ability to create own palette of colors image] (./public/readme_images/createPalette.jpg?raw=true "The user has the ability to create their own palette of colors, with drag-and-drop functionality added to palette ordering")
+![Ability to create own palette of colors image] (../public/readme_images/createPalette.jpg?raw=true "The user has the ability to create their own palette of colors, with drag-and-drop functionality added to palette ordering")
 
-![View of a color palette] (./public/readme_images/paletteView.jpg?raw=true "View of a custom palette with the ability to change the color intensity level of the palette")
+![View of a color palette] (../public/readme_images/paletteView.jpg?raw=true "View of a custom palette with the ability to change the color intensity level of the palette")
 
-![Variations of a single color] (./public/readme_images/colorView.jpg?raw=true "A user can select a color from a palette and see nine different variations of that particular color")
+![Variations of a single color] (../public/readme_images/colorView.jpg?raw=true "A user can select a color from a palette and see nine different variations of that particular color")
 
-![Example of responsive design] (./public/readme_images/responsiveDesign.jpg?)
+![Example of responsive design] (../public/readme_images/responsiveDesign.jpg?raw=true "Example of responsive design")
 
 ## Installation and Setup Instructions
 
