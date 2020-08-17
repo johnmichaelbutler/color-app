@@ -9,19 +9,19 @@ The focus of this application is on Hooks and Context API, not styling. The styl
 ## Project Screenshots
 
 Homepage Screenshot
-![Homepage image] (../public/readme_images/Homepage.jpg)
+<img src="public/readme_images/Homepage.jpg">
 
 The user has the ability to create their own palette of colors, with drag-and-drop functionality added to palette ordering
-![Ability to create own palette of colors image] (../public/readme_images/createPalette.jpg)
+<img src="public/readme_images/createPalette.jpg">
 
 View of a custom palette with the ability to change the color intensity level of the palette
-![View of a color palette] (public/readme_images/paletteView.jpg)
+<img src="public/readme_images/paletteView.jpg">
 
 A user can select a color from a palette and see nine different variations of that particular color
-![Variations of a single color] (public/readme_images/colorView.jpg)
+<img src="public/readme_images/colorView.jpg">
 
 Example of responsive design
-![Example of responsive design] (public/readme_images/responsiveDesign.jpg)
+<img src="public/readme_images/responsiveDesign.jpg">
 
 ## View The Project
 
