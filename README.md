@@ -16,7 +16,7 @@ The focus of this application is on Hooks and Context API, not styling. The styl
 
 ![Variations of a single color] (./public/readme_images/colorView.jpg?raw=true "A user can select a color from a palette and see nine different variations of that particular color")
 
-![Example of responsive design] (./public/readme_images/responsiveDesign.jpg?raw=true "Example of responsive design")
+![Example of responsive design] (./public/readme_images/responsiveDesign.jpg?)
 
 ## Installation and Setup Instructions
 
