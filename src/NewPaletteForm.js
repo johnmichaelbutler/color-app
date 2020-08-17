@@ -40,20 +40,15 @@ function NewPaletteForm() {
     colorsDispatch({type: "ADD_NEW_COLOR", payload: newColor})
   }
 
-  const removeColor = (colorName) => {
-    colorsDispatch({type: "REMOVE_COLOR", payload: colorName})
-  }
-
-
   const onSortEnd = ({oldIndex, newIndex}) => {
     colorsDispatch({type: "ON_SORT_END", payload: { oldInd: oldIndex, newInd: newIndex}})
   }
 
   const clearColors = () => colorsDispatch({type: "CLEAR_COLORS"});
 
+  const handleIconClick = () => setDrawerOpen(false);
 
-  // TESTING
-  console.log("NewPaletteForm rendering");
+  const handleRandomColorClick = () => addRandomColor();
 
   return (
     <div className={classes.root}>
@@ -71,7 +66,7 @@ function NewPaletteForm() {
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton onClick={() => setDrawerOpen(false)}>
+          <IconButton onClick={handleIconClick}>
             <ChevronLeftIcon />
           </IconButton>
         </div>
@@ -82,7 +77,7 @@ function NewPaletteForm() {
             <Button className={classes.button} variant='contained' color="secondary" onClick={clearColors}>
               Clear Palette
             </Button>
-            <Button className={classes.button} disabled={paletteIsFull} variant='contained' color="primary" onClick={() => addRandomColor()}>
+            <Button className={classes.button} disabled={paletteIsFull} variant='contained' color="primary" onClick={handleRandomColorClick}>
               Random Color
             </Button>
           </div>
@@ -100,7 +95,6 @@ function NewPaletteForm() {
         <div className={classes.drawerHeader} />
         <DraggableColorList
           colors={customColors}
-          removeColor={removeColor}
           axis="xy"
           onSortEnd={onSortEnd}
           distance={20}

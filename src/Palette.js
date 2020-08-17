@@ -24,9 +24,6 @@ function Palette(props) {
     setLevel(level);
   }
 
-  // TESTING
-  console.log("Palette rendering");
-
   const colorBoxes = palette.colors[level].map(color => (
     <ColorBox
       key={color.id}

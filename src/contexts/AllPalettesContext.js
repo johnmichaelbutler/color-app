@@ -8,7 +8,6 @@ import seedColors from '../seedColors';
 export const AllPalettesContext = createContext();
 export const PaletteDispatchContext = createContext();
 
-
 export function AllPalettesProvider(props) {
   const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"))
   const [allPalettes, paletteDispatch] = useReducer(PalettesReducer, savedPalettes || seedColors);
@@ -17,8 +16,6 @@ export function AllPalettesProvider(props) {
     window.localStorage.setItem("palettes", JSON.stringify(allPalettes));
   }, [allPalettes])
 
-  // TESTING
-  console.log("AllPaletteContext called");
   return (
     <AllPalettesContext.Provider value={allPalettes}>
       <PaletteDispatchContext.Provider value={paletteDispatch}>

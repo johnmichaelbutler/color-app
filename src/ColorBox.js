@@ -15,9 +15,7 @@ function ColorBox(props) {
     setTimeout(() => setCopied(false), 1500);
   }
 
-
-  // TESTING
-  console.log("ColorBox rendering");
+  const handleClick = e => e.stopPropagation();
 
   return (
     <CopyToClipboard text={backgroundColor} onCopy={changeCopyState}>
@@ -38,7 +36,7 @@ function ColorBox(props) {
           </button>
         </div>
         {showLink && (
-          <Link to={`/palette/${paletteId}/${id}`} onClick={e => e.stopPropagation()}>
+          <Link to={`/palette/${paletteId}/${id}`} onClick={handleClick}>
             <span className={classes.seeMore}>MORE</ span>
           </Link>
         )}

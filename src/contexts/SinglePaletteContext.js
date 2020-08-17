@@ -33,9 +33,6 @@ export function SinglePaletteProvider(props) {
 
   const changePalette = id => setPalette(makeSinglePalette(id));
 
-    // TESTING
-    console.log("SinglePaletteContext rendering");
-
   return (
     <SinglePaletteContext.Provider value={{ palette, changePalette, gatherShades }}>
       {props.children}

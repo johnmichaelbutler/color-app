@@ -19,10 +19,6 @@ function SingleColorPalette(props) {
     changePalette(paletteId);
   }, [paletteId]);
 
-
-  // TESTING
-  console.log("SingleColorPalette rendering");
-
   const colorBoxes = shades.map(color => (
     <ColorBox
       key={color.name}

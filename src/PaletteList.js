@@ -38,10 +38,6 @@ function PaletteList() {
     closeDialog();
   }
 
-
-  // TESTING
-  console.log("PaletteList rendering");
-
   return (
     <div className={classes.root}>
       <div classes={classes.container}>

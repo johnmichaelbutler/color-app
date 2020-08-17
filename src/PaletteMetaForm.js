@@ -42,9 +42,8 @@ function PaletteMetaForm(props) {
     history.push("/");
   }
 
+  const handleTextChange = e => setNewPaletteName(e.target.value);
 
-  // TESTING
-  console.log("PaletteMetaForm rendering");
   return (
     <>
       <Dialog open={emojiOpen} onClose={hideForm}>
@@ -61,7 +60,7 @@ function PaletteMetaForm(props) {
               autoFocus
               label='Palette Name'
               value={newPaletteName}
-              onChange={(e) => setNewPaletteName(e.target.value)}
+              onChange={handleTextChange}
               fullWidth
               margin="normal"
               validators={["required", "isPaletteNameUnique"]}

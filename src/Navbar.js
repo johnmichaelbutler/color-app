@@ -25,10 +25,6 @@ function Navbar(props) {
     setSnackbarOpen(true);
   }
 
-
-  // TESTING
-  console.log("Navbarrendering");
-
   return (
       <header className={classes.Navbar}>
         <div className={classes.logo}>

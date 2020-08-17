@@ -8,8 +8,6 @@ export const ColorDispatchContext = createContext()
 export function CustomColorsProvider(props) {
   const [customColors, colorsDispatch] = useReducer(CustomColorsReducer, seedColors[0].colors);
 
-    // TESTING
-    console.log("CustomColorsContext rendering");
   return (
     <CustomColorsContext.Provider value={customColors}>
       <ColorDispatchContext.Provider value={colorsDispatch}>

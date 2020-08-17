@@ -3,9 +3,6 @@ import React, {memo} from 'react'
 function PaletteFooter(props) {
   const {palette} = props;
 
-
-  // TESTING
-  console.log("PaletteFooter rendering");
   return (
     <div>
       <footer className="Palette-footer">

@@ -24,9 +24,6 @@ function PaletteFormNav(props) {
     setFormShowing(false);
   }
 
-
-  // TESTING
-  console.log("PaletteFormNav rendering");
   return (
     <div className={classes.root}>
       <CssBaseline />

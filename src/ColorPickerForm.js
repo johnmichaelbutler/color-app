@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import {ChromePicker} from 'react-color';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
@@ -30,15 +30,17 @@ function ColorPickerForm(props) {
     setNewColorName("");
   }
 
+  const changeColor = newColor => {
+    setCurrentColor(newColor.hex);
+  }
 
-  // TESTING
-  console.log("ColorPickerForm rendering");
+  const onChange = e => setNewColorName(e.target.value);
 
   return (
     <div className={classes.root}>
       <ChromePicker
         color={currentColor}
-        onChangeComplete={(newColor) => setCurrentColor(newColor.hex)}
+        onChangeComplete={changeColor}
         className={classes.picker}
       />
       <ValidatorForm onSubmit={addNewColor} instantValidate={false}>
@@ -49,7 +51,7 @@ function ColorPickerForm(props) {
           placeholder="Color Name"
           className={classes.colorInput}
           value={newColorName}
-          onChange={e =>setNewColorName(e.target.value)}
+          onChange={onChange}
           validators={["required", "isColorNameUnique", "isColorUnique"]}
           errorMessages={["Enter A Name", "Color name must be unique", "Color already used!"]}
         />
@@ -68,4 +70,4 @@ function ColorPickerForm(props) {
   )
 }
 
-export default ColorPickerForm;
+export default memo(ColorPickerForm);

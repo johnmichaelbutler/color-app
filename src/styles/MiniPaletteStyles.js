@@ -51,6 +51,7 @@ const useStyles = makeStyles(() => ({
     padding: "10px",
     zIndex: 10,
     opacity: 0,
+    transition: "all 0.3s  ease-in-out"
   }
 }))
 

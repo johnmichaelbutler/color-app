@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {SortableElement} from 'react-sortable-hoc';
 import DeleteIcon from '@material-ui/icons/Delete';
 import useStyles from './styles/DraggableColorBoxStyles';
+import {ColorDispatchContext} from './contexts/CustomColorsContext';
 
 const DraggableColorBox = SortableElement((props) => {
-  const { name, color, removeColor } = props;
+  const { name, color } = props;
+  const colorsDispatch = useContext(ColorDispatchContext);
   const classes = useStyles(props);
 
+  const removeColor = () => {
+    colorsDispatch({type: "REMOVE_COLOR", payload: name})
+  }
 
-
-  // TESTING
-  console.log("DraggableColorBox rendering");
   return (
     <div
       className={classes.root}
